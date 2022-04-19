@@ -6,6 +6,32 @@ public final class MaxHeap<T extends Comparable <? super T>>
     private boolean initialized = false;
     private static final int DEFAULT_CAPACITY = 100;
     private static final int MAX_CAPACITY = 10000;
+    private int count=0;
 
+    public boolean checkInitilization()
+    {
+        if ()
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void add(T NewEntry)
+    {
+        checkInitilization();
+        int newIndex = lastIndex + 1;
+        int parentIndex = newIndex / 2;
+        while ((parentIndex > 0) && newEntry.compareTo(heap[parentIndex]) > 0){
+            heap[newIndex] = heap[parentIndex];
+            newIndex = parentIndex;
+            parentIndex = newIndex / 2;
+            numSwaps++;
+        } // end while
+        heap[newIndex] = newEntry;
+        lastIndex++;
+        checkCapacity(heap.length);
+
+    }
 
 }
