@@ -17,6 +17,17 @@ public final class MaxHeap<T extends Comparable <? super T>>
         return false;
     }
 
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public int getSize() {
+        return 0;
+    }
+
+    @Override
     // method for adding to heap using sequential insertions
     public void add(T NewEntry)
     {
@@ -33,6 +44,11 @@ public final class MaxHeap<T extends Comparable <? super T>>
         lastIndex++;
         checkCapacity(heap.length);
 
+    }
+
+    @Override
+    public T getMax() {
+        return null;
     }
 
     private void reheap(int rootIndex)
