@@ -6,35 +6,46 @@ public final class MaxHeap<T extends Comparable <? super T>>
     private boolean initialized = false;
     private static final int DEFAULT_CAPACITY = 100;
     private static final int MAX_CAPACITY = 10000;
-    private int count=0;
+    private int numSwaps=0;
 
-    public boolean checkInitilization()
+    private void checkInitialization()
     {
-        if ()
+        if (!initialized)
         {
-            return true;
+            throw new SecurityException ("MaxHeap object is not initialized properly.");
         }
-        return false;
-    }
+    } //end checkInitialization
 
     @Override
     public void clear() {
+        checkInitialization();
+        while (lastIndex > -1)
+        {
+            heap[lastIndex] = null;
+            lastIndex--;
+        } //end while
+        lastIndex = 0;
+    } //end clear
 
-    }
+    public boolean isEmpty()
+    {
+        return lastIndex < 1;
+    } //end is empty
 
     @Override
     public int getSize() {
-        return 0;
+        return lastIndex;
     }
 
     @Override
     // method for adding to heap using sequential insertions
-    public void add(T NewEntry)
+    public void add(T newEntry)
     {
-        checkInitilization();
+        checkInitialization();
         int newIndex = lastIndex + 1;
         int parentIndex = newIndex / 2;
-        while ((parentIndex > 0) && newEntry.compareTo(heap[parentIndex]) > 0){
+        while ((parentIndex > 0) && newEntry.compareTo(heap[parentIndex]) > 0)
+        {
             heap[newIndex] = heap[parentIndex];
             newIndex = parentIndex;
             parentIndex = newIndex / 2;
@@ -48,8 +59,12 @@ public final class MaxHeap<T extends Comparable <? super T>>
 
     @Override
     public T getMax() {
-        return null;
-    }
+        checkInitialization();
+        T root = null;
+        if( isEmpty() )
+            root = heap[1];
+        return root;
+    } //end getMax;
 
     private void reheap(int rootIndex)
     {
@@ -80,7 +95,7 @@ public final class MaxHeap<T extends Comparable <? super T>>
     //remove method for MaxHeap
     public T removeMax()
     {
-        checkInitilization(); // Ensure initialization of data fields
+        checkInitialization();; // Ensure initialization of data fields
         T root = null;
         if (!isEmpty())
         {
@@ -93,4 +108,30 @@ public final class MaxHeap<T extends Comparable <? super T>>
     } // end removeMax
 
 
+    private void ensureCapacity()
+    {
+        if (lastIndex >= heap.length)
+        {
+            int newCapacity = 2 * heap.length;
+            checkCapacity(newCapacity);
+            heap = Arrays.copyOf(heap, newCapacity);
+        }
+    } //end ensureCapacity
+
+    private void checkCapacity(int capacity)
+    {
+        if (capacity < DEFAULT_CAPACITY)
+        {
+            capacity = DEFAULT_CAPACITY;
+        }
+        else if (capacity > MAX_CAPACITY)
+        {
+            throw new IllegalStateException("Attempt to create a heap " +
+                    "whose capacity is larger than " +
+                    MAX_CAPACITY);
+        }
+    } //end checkCapacity
 }
+
+
+
