@@ -17,6 +17,7 @@ public final class MaxHeap<T extends Comparable <? super T>>
         return false;
     }
 
+    // method for adding to heap using sequential insertions
     public void add(T NewEntry)
     {
         checkInitilization();
@@ -33,5 +34,14 @@ public final class MaxHeap<T extends Comparable <? super T>>
         checkCapacity(heap.length);
 
     }
+
+    // method for adding to heap using optimal method
+
+    //remove method for MaxHeap
+    public T removeMax()
+    {
+        return ;
+    }
+
 
 }
