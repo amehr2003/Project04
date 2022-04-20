@@ -6,7 +6,9 @@ public final class MaxHeap<T extends Comparable <? super T>>
     private boolean initialized = false;
     private static final int DEFAULT_CAPACITY = 100;
     private static final int MAX_CAPACITY = 10000;
-    private int numSwaps=0;
+
+    public int numSwaps=0;
+    public int
 
     private void checkInitialization()
     {
@@ -37,8 +39,8 @@ public final class MaxHeap<T extends Comparable <? super T>>
         return lastIndex;
     }
 
-    @Override
     // method for adding to heap using sequential insertions
+    @Override
     public void add(T newEntry)
     {
         checkInitialization();
@@ -54,7 +56,25 @@ public final class MaxHeap<T extends Comparable <? super T>>
         heap[newIndex] = newEntry;
         lastIndex++;
         checkCapacity(heap.length);
+    }
 
+    // method for adding to heap using the optimal method
+    //@Override
+    public void optimalAdd(T newEntry)
+    {
+        checkInitialization();
+        int newIndex = lastIndex + 1;
+        int parentIndex = newIndex / 2;
+        while ((parentIndex > 0) && newEntry.compareTo(heap[parentIndex]) > 0)
+        {
+            heap[newIndex] = heap[parentIndex];
+            newIndex = parentIndex;
+            parentIndex = newIndex / 2;
+            numSwaps++;
+        } // end while
+        heap[newIndex] = newEntry;
+        lastIndex++;
+        checkCapacity(heap.length);
     }
 
     @Override
