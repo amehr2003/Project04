@@ -2,10 +2,10 @@ Project04 Heaps
 
 By: Anita Mehrazarin, Joshua Furman, and Shree Sriadibahatla
 
-Shree completed the reheap and remove methods in the MaxHeap class
+Shree completed the reheap and remove methods in the MaxHeap class.
 
-Anita completed
+Anita completed the OutputFile.
 
-Joshua completed
+Joshua worked on the MaxHeap class.
 
-Features include a MaxHeapInterface 
+Features include a MaxHeapInterface.
