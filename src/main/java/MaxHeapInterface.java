@@ -23,4 +23,6 @@ public interface MaxHeapInterface <T extends Comparable<? super T>> {
      * removes the max entry from the MaxHeap and returns the object
      */
     public T removeMax();
+
+    public void printHeapValues();
 }
