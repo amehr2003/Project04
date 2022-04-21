@@ -6,7 +6,9 @@ public final class MaxHeap<T extends Comparable <? super T>>
     private boolean initialized = false;
     private static final int DEFAULT_CAPACITY = 100;
     private static final int MAX_CAPACITY = 10000;
-    private int numSwaps=0;
+
+    public static int numSwaps=0;
+    public static int oNumSwaps=0;
 
     private void checkInitialization()
     {
@@ -37,8 +39,8 @@ public final class MaxHeap<T extends Comparable <? super T>>
         return lastIndex;
     }
 
-    @Override
     // method for adding to heap using sequential insertions
+    @Override
     public void add(T newEntry)
     {
         checkInitialization();
@@ -54,7 +56,23 @@ public final class MaxHeap<T extends Comparable <? super T>>
         heap[newIndex] = newEntry;
         lastIndex++;
         checkCapacity(heap.length);
+    }
 
+    // method for adding to heap using the optimal method
+    //@Override
+    public void optimalAdd(T [] optimal)
+    {
+        lastIndex=optimal.length;
+        assert initialized = true; //using assert instead of just =
+        for (int i=0; i<lastIndex; i++)
+        {
+            heap[i+1]=optimal[i];
+        }
+
+        for (int j= lastIndex>>=1; j>0; j--)
+        {
+            reheap(j);
+        }
     }
 
     @Override
@@ -85,12 +103,14 @@ public final class MaxHeap<T extends Comparable <? super T>>
                 heap[rootIndex] = heap[largerChildIndex];
                 rootIndex = largerChildIndex;
                 leftChildIndex = 2 * rootIndex;
+                oNumSwaps++;
             }
             else
                 done = true;
         } // end while
         heap[rootIndex] = orphan;
     } // end reheap
+
 
     //remove method for MaxHeap
     public T removeMax()
@@ -131,6 +151,15 @@ public final class MaxHeap<T extends Comparable <? super T>>
                     MAX_CAPACITY);
         }
     } //end checkCapacity
+
+    //method to print heap values to help in driver class
+    public void printHeapValues()
+    {
+        for (int i=0; i<=10; i++) //this line isn't done
+        {
+            System.out.print(", " + heap[i]);
+        }
+    }
 }
 
 
