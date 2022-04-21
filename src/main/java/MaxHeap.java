@@ -1,5 +1,5 @@
 import java.util.Arrays;
-public final class MaxHeap<T extends Comparable <? super T>>
+public class MaxHeap<T extends Comparable <? super T>>
         implements MaxHeapInterface<T> {
     private T[] heap;   // Array of Heap entries
     private int lastIndex;  // Index of last entry
@@ -58,23 +58,8 @@ public final class MaxHeap<T extends Comparable <? super T>>
         checkCapacity(heap.length);
     }
 
-    @Override
-    public void optimalAdd(T[] optimal) {
-        lastIndex=optimal.length;
-        assert initialized = true; //using assert instead of just =
-        for (int i=0; i<lastIndex; i++)
-        {
-            heap[i+1]=optimal[i];
-        }
-
-        for (int j= lastIndex>>=1; j>0; j--)
-        {
-            reheap(j);
-        }
-    }
-
     // method for adding to heap using the optimal method
-    /*
+
     @Override
     public void OptimalAdd(T[] optimal)
     {
@@ -91,7 +76,6 @@ public final class MaxHeap<T extends Comparable <? super T>>
         }
     }
 
-     */
 
     @Override
     public T getMax() {
@@ -177,11 +161,6 @@ public final class MaxHeap<T extends Comparable <? super T>>
         {
             System.out.print(", " + heap[i]);
         }
-    }
-
-    @Override
-    public void optimalAdd() {
-
     }
 
 }
