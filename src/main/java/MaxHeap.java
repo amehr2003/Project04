@@ -58,9 +58,25 @@ public final class MaxHeap<T extends Comparable <? super T>>
         checkCapacity(heap.length);
     }
 
+    @Override
+    public void optimalAdd(T[] optimal) {
+        lastIndex=optimal.length;
+        assert initialized = true; //using assert instead of just =
+        for (int i=0; i<lastIndex; i++)
+        {
+            heap[i+1]=optimal[i];
+        }
+
+        for (int j= lastIndex>>=1; j>0; j--)
+        {
+            reheap(j);
+        }
+    }
+
     // method for adding to heap using the optimal method
-    //@Override
-    public void optimalAdd(T [] optimal)
+    /*
+    @Override
+    public void OptimalAdd(T[] optimal)
     {
         lastIndex=optimal.length;
         assert initialized = true; //using assert instead of just =
@@ -74,6 +90,8 @@ public final class MaxHeap<T extends Comparable <? super T>>
             reheap(j);
         }
     }
+
+     */
 
     @Override
     public T getMax() {
@@ -160,6 +178,12 @@ public final class MaxHeap<T extends Comparable <? super T>>
             System.out.print(", " + heap[i]);
         }
     }
+
+    @Override
+    public void optimalAdd() {
+
+    }
+
 }
 
 
