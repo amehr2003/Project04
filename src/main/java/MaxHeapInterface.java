@@ -14,6 +14,9 @@ public interface MaxHeapInterface <T extends Comparable<? super T>> {
      */
     public void add(T newEntry);
 
+    // method for adding to heap using the optimal method
+    void optimalAdd(T[] optimal);
+
     /**
      *  returns the max object of the MaxHeap
      */
@@ -25,4 +28,6 @@ public interface MaxHeapInterface <T extends Comparable<? super T>> {
     public T removeMax();
 
     public void printHeapValues();
+
+    public void optimalAdd();
 }
